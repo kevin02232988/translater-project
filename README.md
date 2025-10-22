@@ -99,17 +99,17 @@
 
 사진 1: 
 
-![IM1.png](attachment:35d8abd5-4eee-4376-8aff-11091850ac04:image.png)
+![IM1.png]
 
 사진 2:
 
-![IM2.png](attachment:2babe532-d62e-468d-b966-07804d17489e:image.png)
+![IM2.png]
 
 
 
 사진 3:
 
-![IM3.png](attachment:a2c43248-fce6-4ad1-acea-05e032794107:image.png)
+![IM3.png]
 
 소스코드:
 
