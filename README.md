@@ -98,13 +98,15 @@
 실행 사진
 
 ### 사진 1
-![Google vs Papago](https://github.com/kevin02232988/translator-project/blob/main/images/IM1.png?raw=true)
+![Google vs Papago](https://raw.githubusercontent.com/kevin02232988/translator-project/main/IM1.png)
 
 ### 사진 2
-![mBART & MarianMT](https://github.com/kevin02232988/translator-project/blob/main/images/IM2.png?raw=true)
+![mBART & MarianMT](https://raw.githubusercontent.com/kevin02232988/translator-project/main/IM2.png)
+
 
 ### 사진 3
-![Performance Test](https://github.com/kevin02232988/translator-project/blob/main/images/IM3.png?raw=true)
+![Performance Test](https://raw.githubusercontent.com/kevin02232988/translator-project/main/IM3.png)
+
 
 
 
