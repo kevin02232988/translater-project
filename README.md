@@ -97,20 +97,15 @@
 
 실행 사진
 
-사진 1: 
+### 사진 1
+![Google vs Papago](https://github.com/kevin02232988/translator-project/blob/main/images/IM1.png?raw=true)
 
-![Google vs Papago]![설명](https://github.com/kevin02232988/repository/blob/main/images/IM1.png?raw=true)
+### 사진 2
+![mBART & MarianMT](https://github.com/kevin02232988/translator-project/blob/main/images/IM2.png?raw=true)
 
+### 사진 3
+![Performance Test](https://github.com/kevin02232988/translator-project/blob/main/images/IM3.png?raw=true)
 
-사진 2:
-
-![mBART & MarianMT]![설명](https://github.com/kevin02232988/repository/blob/main/images/IM2.png?raw=true)
-
-
-
-사진 3:
-
-![Performance Test]![설명](https://github.com/kevin02232988/repository/blob/main/images/IM3.png?raw=true)
 
 
 소스코드:
