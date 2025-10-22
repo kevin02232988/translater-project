@@ -99,16 +99,19 @@
 
 사진 1: 
 
-![Google vs Papago](images/IM1.png)
+![Google vs Papago]![설명](https://github.com/username/repository/blob/main/images/IM1.png?raw=true)
+
 
 사진 2:
 
-![mBART & MarianMT](images/IM2.png)
+![mBART & MarianMT]![설명](https://github.com/username/repository/blob/main/images/IM2.png?raw=true)
+
 
 
 사진 3:
 
-![Performance Test](images/IM3.png)
+![Performance Test]![설명](https://github.com/username/repository/blob/main/images/IM3.png?raw=true)
+
 
 소스코드:
 
