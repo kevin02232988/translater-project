@@ -306,29 +306,20 @@ TTS 품질 비교: **Google Cloud TTS (4.9점)**가 gTTS (3.0점) 대비 압도�
 
 ### 🔹 문제 발생
 
-GIT 모델을 초기 로드하고 이미지(`image_ae4a08.jpg` 등)를 입력했을 때,  
+GGIT 모델을 초기 로드하고 이미지(image_ae4a08.jpg 등)를 입력했을 때, expand(torch.FloatTensor[5, 3, 224, 224], size=[1, 5, 3]): the number of sizes provided (3) must be greater or equal to the number of dimensions in the tensor (4) 오류가 발생했다. 이는 모델이 기대하는 4차원 텐서([Batch, Channel, Height, Width]) 형태가 아닌, 잘못된 차원이나 배치 크기로 입력이 전달되었기 때문이다. 특히 배치 크기 5가 관찰되었다.
 
-expand(torch.FloatTensor[5, 3, 224, 224], size=[1, 5, 3]):
-the number of sizes provided (3) must be greater or equal to the number of dimensions in the tensor (4)
+해결 과정 (방어적 코드 추가):
+Streamlit 환경에서 이미지 업로드 및 캐싱 과정에서 텐서의 차원이 꼬이는 문제를 해결하기 위해, generate_image_caption 함수에 torch 텐서의 차원을 강제로 정규화하는 코드를 삽입했다.
 
-yaml
-코드 복사
+        # 2️⃣ pixel_values 차원 강제 정규화
+        pixel_values = inputs.pixel_values
+        if pixel_values.dim() == 3:
+            pixel_values = pixel_values.unsqueeze(0)  # [1, 3, 224, 224]로 강제 변환
+        elif pixel_values.shape[0] != 1:
+            pixel_values = pixel_values[0].unsqueeze(0)  # 배치 첫 번째만 사용
 
-오류가 발생했다. 이는 모델이 기대하는 **4차원 텐서**(`[Batch, Channel, Height, Width]`) 형태가 아닌,  
-잘못된 차원이나 배치 크기로 입력이 전달되었기 때문이다. 특히 배치 크기 5가 관찰되었다.
+---
 
-### 🔹 해결 과정 (방어적 코드 추가)
-
-Streamlit 환경에서 이미지 업로드 및 캐싱 과정에서 텐서의 차원이 꼬이는 문제를 해결하기 위해,  
-`generate_image_caption` 함수에 **torch 텐서 차원 강제 정규화 코드**를 삽입하였다.
-
-```python
-# 2️⃣ pixel_values 차원 강제 정규화
-pixel_values = inputs.pixel_values
-if pixel_values.dim() == 3:
-    pixel_values = pixel_values.unsqueeze(0)  # [1, 3, 224, 224]로 강제 변환
-elif pixel_values.shape[0] != 1:
-    pixel_values = pixel_values[0].unsqueeze(0)  # 배치 첫 번째만 사용
 이 코드를 통해 입력 텐서를 항상 [1, C, H, W] 형태의 4차원으로 보장하여
 모델의 예측 가능한 작동을 확보했다.
 
@@ -389,6 +380,7 @@ AI 시스템 개발 시 발생할 수 있는 데이터 형태 및 모델 간 불
 
 소스코드:
 
+```python
 import streamlit as st
 
 import time
