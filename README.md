@@ -375,22 +375,22 @@ AI 시스템 개발 시 발생할 수 있는 데이터 형태 및 모델 간 불
 ---
 
 ### 사진 1
-!이미지 캡셔닝 및 다국어 TTS](image cap_1.png)
+[!이미지 캡셔닝 및 다국어 TTS](image cap_1.png)
 
 ### 사진 2
-!이미지 캡셔닝 및 다국어 TTS](image cap_5.png)
+[!이미지 캡셔닝 및 다국어 TTS](image cap_5.png)
 
 ### 사진 3
-!이미지 캡셔닝 및 다국어 TTS](image cap_6.png)
+[!이미지 캡셔닝 및 다국어 TTS](image cap_6.png)
 
 ### 사진 4
-!이미지 캡셔닝 및 다국어 TTS](image cap_7.png)
+[!이미지 캡셔닝 및 다국어 TTS](image cap_7.png)
 
 ### 사진 5
-!이미지 캡셔닝 및 다국어 TTS](image cap_8.png)
+[!이미지 캡셔닝 및 다국어 TTS](image cap_8.png)
 
 ### 사진 6
-!이미지 캡셔닝 및 다국어 TTS](image cap_9.png)
+[!이미지 캡셔닝 및 다국어 TTS](image cap_9.png)
 
 
 
