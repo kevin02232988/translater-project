@@ -302,12 +302,15 @@ README 내에는 다음과 같은 캡처 이미지를 포함한다.
 
 예시:
 
-```markdown
+```
 ### 예시 1
-![이미지 캡셔닝 및 다국어 TTS](image%20cap_1.png)
+![Google vs Papago](IM1.png)
 
 ### 예시 2
-![이미지 캡셔닝 및 다국어 TTS](image%20cap_5.png)
+![mBART & MarianMT](IM2.png)
+
+### 예시 3
+![Performance Test](IM3.png)
 
 ...
 ```
@@ -517,6 +520,31 @@ Papago / Google / mBART / MarianMT를
 정보 접근성(Accessibility)을 향상시키는 **기술적 기반**이 될 수 있다.
 
 ---
+
+### 8.4 멀티모달 시스템 실행 이미지
+
+```markdown
+
+### 사진 1
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_1.png)
+
+### 사진 2
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_5.png)
+
+### 사진 3
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_6.png)
+
+### 사진 4
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_7.png)
+
+### 사진 5
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_8.png)
+
+### 사진 6
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_9.png)
+
+...
+```
 
 ## 부록 A. 번역기 비교 Streamlit 앱 핵심 코드
 
