@@ -355,21 +355,31 @@ Many also believe that these papers could lift the veil on more details of Trump
 
 
 ### Google vs Papago
-![Google vs Papago](IM1.png)
+![Google vs Papago](AA.png)
+
+### 이미지 번역 (OCR+번역)
+![이미지 번역 (OCR+번역)](BB.png)
+
+### 이미지 번역_2 (OCR+번역)
+![이미지 번역_2 (OCR+번역)](CC.png)
 
 ### mBART & MarianM
-![mBART & MarianMT](IM2.png)
+![mBART & MarianMT](DD.png)
 
-### Performance Test
-![Performance Test](IM3.png)
+### Google Cloud TTS VS gTTs (오픈소스) 비교_@
+![Google Cloud TTS VS gTTs (오픈소스) 비교](EE.png)
+
+### Google Cloud TTS VS gTTs (오픈소스) 비교_2
+![Google Cloud TTS VS gTTs (오픈소스) 비교](FF.png)
 
 
 
 이미지에는 다음 정보가 시각적으로 표현된다.
 
-- 업로드된 이미지  
-- GIT 캡션 결과  
-- Papago/mBART 번역 결과  
+- 업로드된 이미지
+- Google vs Papago 번역 결과  
+- GIT, OCR+번역 캡션 결과  
+- mBART & MarianM 번역 결과  
 - 최종 TTS 텍스트 및 오디오 플레이어  
 
 ---
