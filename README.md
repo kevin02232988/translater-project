@@ -366,7 +366,7 @@ Many also believe that these papers could lift the veil on more details of Trump
 ### mBART & MarianM
 ![mBART & MarianMT](DD.png)
 
-### Google Cloud TTS VS gTTs (오픈소스) 비교_@
+### Google Cloud TTS VS gTTs (오픈소스) 비교_1
 ![Google Cloud TTS VS gTTs (오픈소스) 비교](EE.png)
 
 ### Google Cloud TTS VS gTTs (오픈소스) 비교_2
