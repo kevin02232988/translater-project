@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=soft&color=auto&height=300&section=header&text=Multimodal%20AI%20Accessibility🔊&fontSize=80)
+![header](https://capsule-render.vercel.app/api?type=soft&color=auto&height=300&section=header&text=Multimodal%20AI%20🔊&fontSize=80)
 
 # 🧩 멀티모달 AI 기반 시각 정보 접근성 향상 시스템
 **외국어 번역기 성능 비교 및 멀티모달 접근성 시스템 구축 최종 보고서**
