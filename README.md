@@ -519,7 +519,7 @@ Papago / Google / mBART / MarianMT를
 
 ### 8.4 멀티모달 시스템 실행 이미지
 
-```markdown
+
 
 ### 사진 1
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_1.png)
@@ -539,8 +539,7 @@ Papago / Google / mBART / MarianMT를
 ### 사진 6
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_9.png)
 
-...
-```
+
 
 ## 부록 A. 번역기 비교 Streamlit 앱 핵심 코드
 
