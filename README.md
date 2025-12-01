@@ -140,8 +140,7 @@ Streamlit 기반 웹 UI에서 두 기능을 탭(Tab)으로 분리하여 제공�
 **원문 예시 텍스트**
 
 ```text
-여기에 일본어 원문 일부를 붙여넣기
-(예: 설국 1장 초반부에서 2~3문장 발췌)
+国境の長いトンネルを抜けると雪國であった. 夜の底が白くなった.
 ```
 ---
 
@@ -151,7 +150,7 @@ Streamlit 기반 웹 UI에서 두 기능을 탭(Tab)으로 분리하여 제공�
 - **원문 언어:** 영어 (en)  
 - **번역 방향:**  
   - 영어 → 한국어  
-  - 영 → 일본어  
+  - 영어 → 일본어  
 
 > 🔎 **사용 목적**  
 > 시사·정치 뉴스 문체에서
@@ -160,7 +159,13 @@ Streamlit 기반 웹 UI에서 두 기능을 탭(Tab)으로 분리하여 제공�
 **원문 예시 텍스트**
 
 ```text
-ㅇ
+as the clock ticks toward the congressionally mandated deadline of 19 December by which Donald Trump’s justice department must release its files related to Jeffrey Epstein, there is intense speculation about the contents of these documents – but also questions as to what happens when they are released.
+
+The US president on 19 November signed a bipartisan bill requiring that the US attorney general, Pam Bondi, disclose these documents to the US public within 30 days. Given that other tranches of materials related to the disgraced financier included damning correspondence with high-profile individuals, many expect that still more names of the rich, famous and powerful will be named.
+
+Victims of Epstein and their advocates, including an overwhelming majority of Congress, have expressed hope that they will also learn why he was able to avoid meaningful prosecution for years despite numerous minors telling authorities that he abused them.
+
+Many also believe that these papers could lift the veil on more details of Trump’s relationship with Epstein, as the president, who had been his friend before a falling-out, is mentioned repeatedly in previously released communications.
 ```
 ---
 
