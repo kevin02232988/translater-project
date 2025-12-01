@@ -1,5 +1,17 @@
-# 멀티모달 AI 기반 시각 정보 접근성 향상 시스템 구축 및  
-외국어 번역기 성능 비교 분석 최종보고서  
+![header](https://capsule-render.vercel.app/api?type=soft&color=auto&height=300&section=header&text=Multimodal%20AI%20Accessibility🔊&fontSize=80)
+
+# 🧩 멀티모달 AI 기반 시각 정보 접근성 향상 시스템
+**외국어 번역기 성능 비교 및 멀티모달 접근성 시스템 구축 최종 보고서**
+
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=Streamlit&logoColor=white)](https://streamlit.io/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=PyTorch&logoColor=white)](https://pytorch.org/)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21C?style=flat-square&logo=huggingface&logoColor=black)](https://huggingface.co/)
+[![Google Cloud](https://img.shields.io/badge/Google%20Cloud-4285F4?style=flat-square&logo=GoogleCloud&logoColor=white)](https://cloud.google.com/)
+[![Naver Cloud](https://img.shields.io/badge/Naver%20Cloud-03C75A?style=flat-square&logo=Naver&logoColor=white)](https://www.ncloud.com/)
+
+---
+
 
 **과목명:** 인공지능 개발 프로젝트  
 **프로젝트명:** 외국어 번역기 성능 비교 및 멀티모달 접근성 시스템 구축  
