@@ -296,24 +296,19 @@ Streamlit 기반 웹 UI에서 두 기능을 탭(Tab)으로 분리하여 제공�
 
 ### 6.4 구현 결과 (실행 화면 예시)
 
-README 내에는 다음과 같은 캡처 이미지를 포함한다.
-
-- `image cap_1.png` ~ `image cap_9.png`  
-
 예시:
 
-```
-### 예시 1
+
+### Google vs Papago
 ![Google vs Papago](IM1.png)
 
-### 예시 2
+### mBART & MarianM
 ![mBART & MarianMT](IM2.png)
 
-### 예시 3
+### Performance Test
 ![Performance Test](IM3.png)
 
-...
-```
+
 
 이미지에는 다음 정보가 시각적으로 표현된다.
 
