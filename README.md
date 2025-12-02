@@ -334,6 +334,8 @@ Many also believe that these papers could lift the veil on more details of Trump
 - 이미지 내 텍스트를 추출(**OCR**)하고, 원하는 언어로 번역
 - 캡션 + 번역 결과를 합쳐 **TTS로 읽어주는 통합 음성 안내**
 - Papago/mBART를 동시에 활용하여 **온라인/오프라인 번역 모두 지원**
+- - OCR 단계에서는 **자동 언어 감지를 사용하지 않고**, 사용자가 직접 선택한 원본 언어(한국어/영어/일본어)에 맞춰 Tesseract의 언어를 설정한다.
+- 1차 인식 결과가 없거나 매우 짧을 경우, 이미지를 흑백 변환·기울기 보정(OSD)·해상도 업샘플링·노이즈 제거·이진화하는 **심화 전처리**를 적용한 뒤 동일 언어로 2차 OCR을 수행한다.
 
 ---
 
@@ -342,7 +344,7 @@ Many also believe that these papers could lift the veil on more details of Trump
 | 단계 | 모듈 | 역할 | 특징 |
 | --- | --- | --- | --- |
 | 1 | **GIT (microsoft/git-base)** | 이미지 전체 내용 캡션 생성 | Vision-Language, 오프라인 동작 |
-| 2 | **Tesseract OCR** | 이미지 내 텍스트(ko/en/ja) 추출 | 로컬 라이브러리, 다국어 지원 |
+| 2 | **Tesseract OCR** | 이미지 내 텍스트(ko/en/ja) 추출 | 로컬 라이브러리, 다국어 지원 | + 이미지 텍스트 추출 (사용자 지정 언어 + 흑백·기울기 보정 심화 전처리) |
 | 3 | **Papago API** | OCR 텍스트 및 캡션 번역(온라인) | 한국어·일본어 강점, 사용자 지정 원본 언어 지원 |
 | 4 | **mBART** | OCR 텍스트 및 캡션 번역(오프라인) | 다국어 Many-to-Many, ja→ko는 영어 우회 경로 사용 |
 | 5 | **Google Cloud TTS** | 최종 통합 텍스트를 고품질 음성으로 합성 | Wavenet 기반, 다국어 지원 |
@@ -470,7 +472,9 @@ def translate_papago(text, target_lang, source_lang):
 
 ```
 자동 감지를 완전히 배제함으로써  
-언어 오인에 의한 번역 실패를 **원천 차단하였다.**
+언어 오인에 의한 번역 실패를 **원천 차단**하였다.  
+또한 동일한 원칙을 OCR 단계에도 적용하여, Tesseract 역시 사용자가 선택한 단일 언어로만 인식하도록 설계하였다.
+
 
 ---
 
@@ -528,6 +532,99 @@ if source_lang == "일본어" and target_lang == "한국어":
 → 오프라인 환경에서도 **Papago에 근접한 번역 품질**을 확보할 수 있었다.
 
 ---
+
+### 7.4 이슈 4 – OCR 다국어 인식 오류 및 해결 (단일 언어 모드 + 심화 전처리)
+
+#### 문제
+
+초기 버전에서는 Tesseract를 `kor+eng+jpn` 다국어 모드로 설정하여  
+한 번에 여러 언어를 인식하도록 구성하였다.  
+
+그러나 실제 이미지(거리 표지판, 간판 등)에 적용해 보니:
+
+- 영어 표지판임에도 일본어/한국어 글꼴로 잘못 해석되어  
+  `「ｦ霎罕 …` 같은 **의미 없는 문자 시퀀스**가 자주 발생하고,
+- 이미지가 약간 기울어져 있거나, 배경 노이즈가 많은 경우  
+  인식률이 급격히 떨어지는 문제가 확인되었다.
+
+즉, **다국어 모드 + 기울어진/잡음 많은 이미지** 조합에서  
+Tesseract의 실사용성이 크게 떨어지는 한계가 드러났다.
+
+---
+
+#### 원인
+
+- `kor+eng+jpn`처럼 여러 언어를 동시에 활성화하면  
+  Tesseract가 **비슷한 모양의 글자**를 여러 스크립트(candidate)와 비교해야 하므로
+  잘못된 문자로 매칭될 확률이 증가한다.
+- 거리 표지판·간판 사진은
+  - 약간의 회전(tilt),
+  - 낮은 대비,
+  - 배경 사물(노이즈)
+  등을 포함하는 경우가 많아, OCR 입력으로는 **조건이 좋지 않은 이미지**이다.
+
+이 두 요인이 겹치면서 **다국어 모드일수록 garbage text가 더 많이 발생**했다.
+
+---
+
+#### 해결 – 단일 언어 모드 + 2단계(기본 → 흑백·심화) OCR
+
+이를 해결하기 위해, 본 프로젝트의 최종 버전에서는  
+다음과 같은 전략으로 OCR 모듈을 재설계하였다.
+
+1. **사용자 주도 원본 언어 선택**
+   - Streamlit UI에서 사용자가 **OCR 텍스트의 실제 언어**를  
+     `한국어 / 영어 / 일본어` 중에서 직접 선택한다.
+   - 내부에서는 이를 Tesseract 언어 코드로 매핑한다.  
+     (`한국어 → kor`, `영어 → eng`, `일본어 → jpn`)
+
+2. **1차 OCR – 원본 이미지 + 단일 언어**
+   - 선택된 언어 하나만 활성화하여,  
+     ```kor+eng+jpn``` 과 같은 다국어 모드를 완전히 제거하였다.
+   - 원본 이미지를 그대로 사용하여 1차 인식을 수행한다.  
+   - 결과 문자열이 비어 있거나, 길이가 너무 짧은 경우(예: 10자 미만)  
+     → “인식이 약하다”고 판단하고 2차 OCR로 넘어간다.
+
+3. **심화 전처리 파이프라인 (흑백 + 기울기 보정)**
+   - 2차 OCR 전, 다음 순서로 이미지를 전처리한다.
+     - RGB → **그레이스케일(흑백) 변환**
+     - `image_to_osd()`를 이용해 회전 각도를 추정하고,  
+       해당 각도만큼 역회전하여 **수평으로 보정(Deskew)**  
+     - 해상도가 낮으면 최대 변 길이가 1,000px가 되도록 **업샘플링**
+     - `MedianFilter`로 자잘한 노이즈 제거
+     - 대비를 강화한 뒤, 임계값 128 기준으로 **완전 흑/백 이진화**
+
+4. **2차 OCR – 흑백·심화 이미지 + 동일 언어**
+   - 심화 전처리 결과 이미지에 대해,  
+     1차와 동일한 단일 언어(`kor` 또는 `eng` 또는 `jpn`)로 다시 OCR을 수행한다.
+   - 1차 결과와 2차 결과를 비교하여
+     - 1차가 비어 있거나
+     - 2차가 더 길고 정보량이 많을 경우  
+       → **최종 OCR 텍스트로 2차 결과를 채택**한다.
+
+5. **후속 파이프라인과의 연계**
+   - 이렇게 얻은 최종 OCR 텍스트는  
+     사용자가 선택한 원본 언어 정보와 함께
+     Papago / mBART 번역 모듈로 넘겨지고,
+   - 이후 캡션 번역 결과와 함께 합쳐져  
+     Google Cloud TTS를 통해 최종 음성 안내 문장을 생성한다.
+
+---
+
+#### 적용 효과
+
+- 거리 표지판, 공공 안내문처럼 **단일 언어로 쓰인 사진**에서  
+  이전보다 훨씬 안정적인 인식 결과를 얻을 수 있었다.
+- 특히, 다국어 모드에서 자주 나타나던  
+  “의미 없는 CJK 문자 시퀀스”가 거의 사라졌고,
+- 약간 기울어진 사진에서도 **기울기 보정 + 흑백 이진화** 덕분에  
+  OCR 인식률이 눈에 띄게 개선되었다.
+
+결과적으로, 본 시스템의 OCR 모듈은  
+“자동 언어 감지 + 다국어 인식” 대신  
+**“사용자 선택 단일 언어 + 심화 전처리 기반 2단계 OCR”** 구조로 발전하였으며,  
+시각 정보 접근성 향상이라는 목표에 보다 적합한 형태로 완성되었다.
+
 
 ## 8. 결론 및 기대 효과
 
@@ -728,6 +825,37 @@ from transformers import (
 from google.cloud import texttospeech
 
 # --- 설정 및 인증 ---
+
+TESSERACT_LANG_MAP = {"한국어": "kor", "영어": "eng", "일본어": "jpn"}
+
+def preprocess_for_ocr(img: Image.Image) -> Image.Image:
+    """흑백 변환 + 기울기 보정 + 업샘플링 + 노이즈 제거 + 이진화"""
+    img = img.convert("L")
+    try:
+        osd = pytesseract.image_to_osd(img)
+        angle = int(re.search(r"Rotate: (\d+)", osd).group(1))
+        if angle != 0:
+            img = img.rotate(-angle, expand=True)
+    except Exception:
+        pass
+
+    w, h = img.size
+    if max(w, h) < 1000:
+        scale = 1000 / max(w, h)
+        img = img.resize((int(w * scale), int(h * scale)), Image.LANCZOS)
+
+    img = img.filter(ImageFilter.MedianFilter(size=3))
+    img = ImageEnhance.Contrast(img).enhance(2.0)
+    img = img.point(lambda x: 0 if x < 128 else 255, "1")
+    return img
+
+def run_ocr(img: Image.Image, src_lang: str) -> str:
+    """사용자가 선택한 단일 언어로만 OCR 수행"""
+    tess_lang = TESSERACT_LANG_MAP[src_lang]
+    return pytesseract.image_to_string(
+        img, lang=tess_lang, config="--oem 3 --psm 6"
+    ).strip()
+
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
