@@ -683,23 +683,27 @@ Papago / Google / mBART / MarianMT를
 
 
 
-### 사진 1
+### 이미지 캡셔닝 및 다국어 TTS
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_1.png)
 
-### 사진 2
+### 이미지 캡셔닝 및 다국어 TTS
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_5.png)
 
-### 사진 3
+### 이미지 캡셔닝 및 다국어 TTS
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_6.png)
 
-### 사진 4
+### 이미지 캡셔닝 및 다국어 TTS
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_7.png)
 
-### 사진 5
+### 이미지 캡셔닝 및 다국어 TTS
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_8.png)
 
-### 사진 6
+### 이미지 캡셔닝 및 다국어 TTS
 ![이미지 캡셔닝 및 다국어 TTS](image%20cap_9.png)
+
+<!-- ### 이미지 캡셔닝 및 다국어 TTS
+![이미지 캡셔닝 및 다국어 TTS](image%20cap_10.png) -->
+
 
 
 
