@@ -679,7 +679,9 @@ Papago / Google / mBART / MarianMT를
 
 ---
 
-### 8.4 멀티모달 시스템 실행 이미지
+### 8.4 멀티모달 시스템 실행 이미지와 유튜브 동영상 링크 
+
+[동영상 링크](https://youtu.be/9yzNf7Eyemo/)
 
 
 
