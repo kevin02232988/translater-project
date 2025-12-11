@@ -188,6 +188,8 @@ Many also believe that these papers could lift the veil on more details of Trump
 > - MarianMT는 로컬 모델 중 가장 빠르지만 API 대비 여전히 느리다.  
 > - mBART는 **가장 느리지만**, 이후 품질 분석에서 높은 번역 품질을 보여 **“속도 vs 품질” 트레이드오프**가 뚜렷하게 나타났다.
 
+![평균 번역 속도 비교](SPEED.png)
+
 ---
 
 ### 4.3 품질 분석 결과 (주관적 5점 척도)
