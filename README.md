@@ -916,4 +916,55 @@ def load_mbart_model():
 
 ```
 
+## 부록 C. 실험 데이터셋 및 리소스 상세
+
+본 프로젝트의 정량적/정성적 평가를 위해 사용된 텍스트 원문, 이미지 데이터, 음성 샘플에 대한 상세 정보를 기술한다.
+
+### C.1 번역 성능 평가용 텍스트 (Text Corpus)
+
+각 테스트 케이스(T-1 ~ T-5)별로 실제 모델 입력에 사용된 원문 데이터이다.
+
+| ID | 유형 | 언어 | 원문 텍스트 (Input) |
+| :--- | :--- | :--- | :--- |
+| **T-1** | 짧은 문장 | KO | **점심 식사 후에 바로 회의를 시작합니다.** |
+| **T-2** | 긴 문장 (학술) | KO | **양자역학의 불확정성 원리는 입자의 위치와 운동량을 동시에 정확히 측정할 수 없음을 의미한다.** |
+| **T-3** | 시/문학 (감성) | JA | **国境の長いトンネルを抜けると雪國であった。夜の底が白くなった。**<br>*(출처: 가와바타 야스나리, 『설국』 첫 문장)* |
+| **T-4** | 뉴스/시사 | EN | **As the clock ticks toward the congressionally mandated deadline of 19 December by which Donald Trump’s justice department must release its files related to Jeffrey Epstein, there is intense speculation about the contents of these documents.**<br>*(출처: The Guardian, 트럼프-엡스타인 관련 보도 발췌)* |
+| **T-5** | 산문/설명문 | KO | **본 시스템은 사용자 편의성을 최우선으로 고려하여 마우스 클릭 횟수를 최소화하도록 설계되었다.** |
+
+---
+
+### C.2 OCR 성능 평가용 이미지 (Test Images)
+
+OCR 인식률 및 번역 성능 테스트를 위해 다음 세 가지 유형의 이미지를 사용하였다. (보안 및 저작권 문제로 인해 실제 실험에는 Unsplash 및 Wikimedia Commons의 유사 이미지를 활용하였다.)
+
+#### **I-1. 간판/메뉴판 (일본어 세로쓰기 & 손글씨)**
+* **파일명:** `ocr_test_menu_ja.jpg`
+* **특징:** 붓글씨 폰트, 세로쓰기(Vertical), 여백이 적은 레이아웃
+* **테스트 목적:** Papago와 Tesseract의 **세로쓰기 인식 능력** 및 캘리그라피 폰트 인식률 비교
+* **예시 이미지 출처:** [Wikimedia Commons - Izakaya Menu](https://commons.wikimedia.org/wiki/File:Menu_of_Izakaya.jpg) (유사 이미지 참조)
+
+#### **I-2. 기술 문서 (영어 논문/다이어그램)**
+* **파일명:** `ocr_test_paper_en.png`
+* **특징:** 2단 컬럼 구성, 문단 중간에 표(Table)와 다이어그램 포함
+* **테스트 목적:** Google Vision API와 Tesseract의 **레이아웃 분석(Layout Analysis)** 능력 및 표 안의 텍스트 추출 정확도 평가
+* **예시 이미지 출처:** [ArXiv.org - Attention Is All You Need](https://arxiv.org/abs/1706.03762) (논문 1페이지 캡처 활용)
+
+#### **I-3. 일상 사진 (거리 표지판 & 노이즈)**
+* **파일명:** `ocr_test_street_sign.jpg`
+* **특징:** 복잡한 도시 배경, 약간의 기울기(Tilt), 저조도 환경
+* **테스트 목적:** **이미지 전처리(Gray scaling, Deskewing)** 적용 전후의 인식률 변화 및 배경 노이즈 제거 성능 확인
+* **예시 이미지 출처:** [Unsplash - Busy Street Sign](https://unsplash.com/s/photos/street-sign-night) (유사 이미지 참조)
+
+---
+
+### C.3 TTS 성능 비교용 오디오 소스
+
+TTS 모델(Google Cloud TTS vs gTTS)의 성능 비교는 **감성 표현**과 **정보 전달력**을 극대화할 수 있는 두 가지 대조적인 텍스트를 사용하여 진행하였다.
+
+| 파일명 | 내용 (Source Text) | 목적 | 비고 |
+| :--- | :--- | :--- | :--- |
+| `tts_sample_emotion.mp3` | **T-3 (설국 도입부)** | 문학적 표현의 억양, 끊어 읽기(Prosody) 등 **자연스러움** 평가 | Google TTS의 Wavenet 음성이 훨씬 자연스러움 |
+| `tts_sample_info.mp3` | **T-1 (회의 일정)** | 사무적이고 명확한 **정보 전달 속도 및 발음 정확도** 평가 | gTTS는 다소 딱딱하고 기계적인 느낌이 강함 |
+
 
