@@ -964,7 +964,7 @@ TTS 모델(Google Cloud TTS vs gTTS)의 성능 비교는 **감성 표현**과 **
 
 | 파일명 | 내용 (Source Text) | 목적 | 비고 |
 | :--- | :--- | :--- | :--- |
-| `tts_sample_emotion.mp3` | **T-3 (설국 도입부)** | 문학적 표현의 억양, 끊어 읽기(Prosody) 등 **자연스러움** 평가 | Google TTS의 Wavenet 음성이 훨씬 자연스러움 |
-| `tts_sample_info.mp3` | **T-1 (회의 일정)** | 사무적이고 명확한 **정보 전달 속도 및 발음 정확도** 평가 | gTTS는 다소 딱딱하고 기계적인 느낌이 강함 |
+| `tts_sample_emotion.mp3` | **(소설 설국 도입부)** | 문학적 표현의 억양, 끊어 읽기(Prosody) 등 **자연스러움** 평가 | Google TTS의 Wavenet 음성이 훨씬 자연스러움 |
+| `tts_sample_info.mp3` | **(일상 대화, 회의 일정)** | 사무적이고 명확한 **정보 전달 속도 및 발음 정확도** 평가 | gTTS는 다소 딱딱하고 기계적인 느낌이 강함 |
 
 
