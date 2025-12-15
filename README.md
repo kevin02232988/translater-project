@@ -18,7 +18,7 @@
 **학번 / 이름:** 2021143013 김준성  
 **제출일:** 2025년 기말 프로젝트  
 
-[번역기 성능 비교 동영상 링크](https://youtu.be/9yzNf7Eyemo/)
+[번역기 성능 비교 동영상 링크](https://youtu.be/5Ynp77qHLy0/)
 
 [이미지 캡셔닝 및 다국어 TTS 동영상 링크](https://youtu.be/ywav_0vXw9o/)
 
